@@ -1,10 +1,10 @@
 PGraphics pgMain;
 PGraphics[] pgs;
 PImage[] circles, naCircles;
-PImage inner_circle;
+PImage innerCircle;
 PFont[] fonts;
-int[] fontColors;
-int[] dimensions;
+int[] fontColors = {#212C22, #212C22, #FFFFFF};
+int[] dimensions = {172, 127, 87}; //2px padding
 //=================================================================================
 
 void setup() {
@@ -15,7 +15,7 @@ void setup() {
   circles[0] = loadImage("API_icon_s1_circle_rails_only.png");
   circles[1] = loadImage("API_icon_s2_circle.png");
   circles[2] = loadImage("API_icon_s3_circle.png");
-  inner_circle = loadImage("Large_inner_circle.png");
+  innerCircle = loadImage("Large_inner_circle.png");
   naCircles = new PImage[3];
   naCircles[0] = loadImage("API_icon_s1_circle_NA.png");
   naCircles[1] = loadImage("API_icon_s2_circle_NA.png");
@@ -27,11 +27,6 @@ void setup() {
   fonts[0] = createFont("Lato-Reg", 72);
   fonts[1] = createFont("Lato-Reg", 50);
   fonts[2] = createFont("Lato-Reg", 37);
-
-  fontColors = new int[3];
-  fontColors[0] = #212C22;
-  fontColors[1] = #212C22;
-  fontColors[2] = #FFFFFF;
   
   //PGraphic enables transparent background
   pgMain = createGraphics(210, 210); //main canvas to draw stuff
@@ -39,11 +34,6 @@ void setup() {
   pgs[0] = createGraphics(172, 172);
   pgs[1] = createGraphics(127, 127);
   pgs[2] = createGraphics(87, 87);
-
-  dimensions = new int[3];
-  dimensions[0] = 172; //2px padding
-  dimensions[1] = 127;
-  dimensions[2] = 87;
 }
 
 //=================================================================================
@@ -56,7 +46,7 @@ void draw() {
   makeIcon(2, i);
   makeIcon(3, i);
 
-  if (i >= 100) {
+  if (i == 100) {
     makeNaIcon(1);
     makeNaIcon(2);
     makeNaIcon(3);
@@ -79,7 +69,7 @@ void makeIcon(int style, int i) {
     pgMain.fill(#4AA362); //green
     pgMain.arc(105, 105, 170, 170, -0.5*PI, 2*PI*i/100-0.5*PI);
     //inner circle
-    pgMain.image(inner_circle, 0, 0);
+    pgMain.image(innerCircle, 0, 0);
   }
   //score number
   pgMain.fill(fontColors[style-1]);
