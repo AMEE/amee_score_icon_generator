@@ -1,6 +1,6 @@
 PGraphics pgMain;
 PGraphics[] pgs;
-PImage[] circles;
+PImage[] circles, naCircles;
 PImage inner_circle;
 PFont[] fonts;
 int[] fontColors;
@@ -16,6 +16,10 @@ void setup() {
   circles[1] = loadImage("API_icon_s2_circle.png");
   circles[2] = loadImage("API_icon_s3_circle.png");
   inner_circle = loadImage("Large_inner_circle.png");
+  naCircles = new PImage[3];
+  naCircles[0] = loadImage("API_icon_s1_circle_NA.png");
+  naCircles[1] = loadImage("API_icon_s2_circle_NA.png");
+  naCircles[2] = loadImage("API_icon_s3_circle_NA.png");
 
   //String[] fontList = PFont.list();
   //println(fontList);
@@ -53,6 +57,9 @@ void draw() {
   makeIcon(3, i);
 
   if (i >= 100) {
+    makeNaIcon(1);
+    makeNaIcon(2);
+    makeNaIcon(3);
     noLoop();
   }
 }
@@ -94,5 +101,21 @@ void makeIcon(int style, int i) {
     int ypos = count / 6 * 210;
     image(pg, xpos, ypos);
   }
+}
+
+void makeNaIcon(int style) {
+  pgMain.beginDraw();
+  pgMain.clear();
+  pgMain.image(naCircles[style-1], 0, 0);
+  pgMain.endDraw();
+
+  //paste image on a smaller pg and save
+  PGraphics pg = pgs[style-1];
+  pg.beginDraw();
+  pg.clear();
+  int offset = -ceil((210-dimensions[style-1])/2);
+  pg.image(pgMain, offset, offset);
+  pg.endDraw();
+  pg.save("score_images/style" + style + "/na.png");
 }
 
