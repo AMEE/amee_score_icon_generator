@@ -106,6 +106,6 @@ void makeNaIcon(int style) {
   int offset = -ceil((210-dimensions[style-1])/2);
   pg.image(pgMain, offset, offset);
   pg.endDraw();
-  pg.save("score_images/style" + style + "/na.png");
+  pg.save("score_images/style" + style + "/none.png");
 }
 
