@@ -1,3 +1,8 @@
 h1. Processing based icon generator
 
-Load up in "Processing":http://processing.org and run!
+This script generates score icons for the API.
+
+Install Processing 2.0.1 from http://processing.org, load amee_score_icon_generator.pde and run.
+
+It produces a score_images/ folder with 3 subfolders, one for each size, style1/, style2/ and style3/. Each of these has icons for the 100 scores, plus the N/A icon. Upload them to S3.
+

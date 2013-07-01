@@ -1,2 +1,2 @@
 *.zip
-score_images/
+.DS_Store
